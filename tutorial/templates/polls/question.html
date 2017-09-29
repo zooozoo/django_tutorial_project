@@ -1,0 +1,12 @@
+<h1>{{ question }}</h1>
+<ul>
+    <form action="{% url 'vote' pk=question.pk %}" method="post"> {% csrf_token %}
+        {% for choices in question.choice_set.all %}
+        <li>{{ choices.title }}
+            <input type="radio" name="select" value="{{ choices.pk }}">
+        </li>
+        <p>{{ choices.votes }}</p>
+        {% endfor %}
+        <input type="submit" value="제출">
+    </form>
+</ul>
